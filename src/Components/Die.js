@@ -7,13 +7,13 @@ export default class Die extends Component {
     this.state = {};
   }
   static defaultProps = {
-    numSide: "one"
+    face: "one"
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div style={{ margin: "1rem" }}>
-        <i className={`fad fa-dice-${this.props.numSide} fa-7x`}></i>
+        <i className={`Die fad fa-dice-${this.props.face} fa-7x`}></i>
       </div>
     );
   }

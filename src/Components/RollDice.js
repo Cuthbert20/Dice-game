@@ -4,16 +4,26 @@ import "../styles/RollDice.css";
 
 //empty array
 class RollDice extends Component {
+  static defaultProps = {
+    sides: ["one", "two", "three", "four", "five", "six"]
+  };
   constructor() {
     super();
     this.state = {
-      numSide: []
+      dieOne: "one",
+      dieTwo: "one"
     };
+    this.ranNum = this.ranNum.bind(this);
   }
   ranNum() {
-    const numArr = ["one", "two", "three", "four", "five", "six"];
-    numArr.forEach((elm, index) => {});
-    //   this.setState({numSide: })
+    const newDieOne = this.props.sides[
+      Math.floor(Math.random() * this.props.sides.length)
+    ];
+    const newDieTwo = this.props.sides[
+      Math.floor(Math.random() * this.props.sides.length)
+    ];
+    this.setState({ dieOne: newDieOne, dieTwo: newDieTwo });
+    console.log(this.state);
   }
   render() {
     const style = {
@@ -32,11 +42,11 @@ class RollDice extends Component {
             flexDirection: "row"
           }}
         >
-          <Die numSide={this.state.numSide[0]} />
-          <Die numSide={this.state.numSide[0]} />
+          <Die face={this.state.dieTwo} />
+          <Die face={this.state.dieOne} />
         </div>
         <div>
-          <button>Roll Dice</button>
+          <button onClick={this.ranNum}>Roll Dice</button>
           {/* Onclick that randomly changes the numSide state Value */}
         </div>
       </div>
