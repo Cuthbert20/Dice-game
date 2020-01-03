@@ -8,8 +8,8 @@ export default class Die extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Die</h1>
+      <div style={{ margin: "1rem" }}>
+        <i class="fad fa-dice-one fa-7x"></i>
       </div>
     );
   }
