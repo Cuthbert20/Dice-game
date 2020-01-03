@@ -11,21 +11,32 @@ class RollDice extends Component {
     super();
     this.state = {
       dieOne: "one",
-      dieTwo: "one"
+      dieTwo: "one",
+      btnDisabled: false
     };
     this.ranNum = this.ranNum.bind(this);
+    this.handleBtnDisable = this.handleBtnDisable.bind(this);
   }
-  ranNum() {
+  ranNum(event) {
+    event.preventDefault();
     const newDieOne = this.props.sides[
       Math.floor(Math.random() * this.props.sides.length)
     ];
     const newDieTwo = this.props.sides[
       Math.floor(Math.random() * this.props.sides.length)
     ];
-    this.setState({ dieOne: newDieOne, dieTwo: newDieTwo });
+    this.setState({ dieOne: newDieOne, dieTwo: newDieTwo, btnDisabled: true });
+    setTimeout(() => this.setState({ btnDisabled: false }), 2000);
     console.log(this.state);
   }
+  handleBtnDisable(event) {
+    event.preventDefault();
+    this.setState({ btnDisabled: true });
+
+    setTimeout(() => this.setState({ btnDisabled: false }, 2000));
+  }
   render() {
+    const { btnDisabled, dieOne, dieTwo } = this.state;
     const style = {
       display: "flex",
       alignItems: "center",
@@ -42,11 +53,13 @@ class RollDice extends Component {
             flexDirection: "row"
           }}
         >
-          <Die face={this.state.dieTwo} />
-          <Die face={this.state.dieOne} />
+          <Die face={dieTwo} />
+          <Die face={dieOne} />
         </div>
         <div>
-          <button onClick={this.ranNum}>Roll Dice</button>
+          <button onClick={this.ranNum} disabled={btnDisabled}>
+            {btnDisabled ? "Rolling..." : "Roll Dice"}
+          </button>
           {/* Onclick that randomly changes the numSide state Value */}
         </div>
       </div>
