@@ -6,10 +6,14 @@ export default class Die extends Component {
     super(props);
     this.state = {};
   }
+  static defaultProps = {
+    numSide: "one"
+  };
   render() {
+    console.log(this.props);
     return (
       <div style={{ margin: "1rem" }}>
-        <i class="fad fa-dice-one fa-7x"></i>
+        <i className={`fad fa-dice-${this.props.numSide} fa-7x`}></i>
       </div>
     );
   }
