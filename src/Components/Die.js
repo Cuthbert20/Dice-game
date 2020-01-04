@@ -13,7 +13,10 @@ export default class Die extends Component {
     // console.log(this.props);
     return (
       <div style={{ margin: "1rem" }}>
-        <i className={`Die fad fa-dice-${this.props.face} fa-7x`}></i>
+        <i
+          className={`Die fad fa-dice-${this.props.face} fa-7x ${this.props
+            .rolling && "shaking"}`}
+        ></i>
       </div>
     );
   }
